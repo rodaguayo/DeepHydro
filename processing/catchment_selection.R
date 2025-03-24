@@ -36,13 +36,14 @@ q_metadata <- q_metadata[basin_select,]
 q_shape   <- q_shape[basin_select,] 
 
 
-# split into 10 groups
-q_shape$kfold_pur <- as.integer(cut(1:length(q_shape$gauge_id), breaks = 10, labels = FALSE))
+# split into 10 groups (by latitude; PUR)
+q_shape$kfold_pur_test <- as.integer(cut(1:length(q_shape$gauge_id), breaks = 10, labels = FALSE))
 
-# split into 10 groups (randomly)
+# split into 10 groups (randomly; PUB)
 set.seed(123)
 q_shape <- q_shape[sample(nrow(q_shape)), ]
-q_shape$kfold_pub <- as.integer(cut(1:length(q_shape$gauge_id), breaks = 10, labels = FALSE))
+q_shape$kfold_pub_test <- as.integer(cut(1:length(q_shape$gauge_id), breaks = 10, labels = FALSE))
+
 q_shape <- q_shape[order(q_shape$gauge_lat, decreasing = T), ]
 
 # save
