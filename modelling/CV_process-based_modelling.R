@@ -30,8 +30,8 @@ basin_centroids <- geom(centroids(q_shape), df = TRUE)
 q_metadata       <- read.csv(paste0("data/Attributes_all_basins_pmet.csv"), row.names = "gauge_id")
 q_metadata       <- q_metadata[rownames(q_metadata) %in% basin_selection$gauge_id, ] 
 
-q_metadata$kfold_pur  <- basin_selection$kfold_pur
-q_metadata$kfold_pub  <- basin_selection$kfold_pub
+q_metadata$kfold_pur  <- basin_selection$kfold_pur_test
+q_metadata$kfold_pub  <- basin_selection$kfold_pub_test
 
 q_obs      <- read.csv(paste0(path_pmet, "data/Zenodo/v11/Q_PMETobs_1950_2020_v11d.csv"), row.names = "Date")
 q_obs      <- q_obs[rownames(q_obs) %in% as.character(period_calib), ] 
